@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>온라인 강의 체험</title>
+  <style>
+    .department-buttons button {
+      background: white;
+      border: 0.5px solid #ccc;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .tab-buttons {
+      display: flex;
+      border: 1px solid #ccc;
+      margin-bottom: 40px;
+    }
+    .tab-buttons button {
+      flex: 1;
+      padding: 15px;
+      background-color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-right: 1px solid #ccc;
+    }
+    .tab-buttons button:last-child {
+      border-right: none;
+    }
+    .tab-buttons button.active {
+      background-color: #00a5df;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .department-buttons button:hover,
+    .department-buttons button.active {
+      background-color: #333;
+      color: #fff;
+    }
+    .lecture-box {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    .lecture-video {
+      flex: 1;
+    }
+    .lecture-video iframe {
+      width: 100%;
+      height: 320px;
+      border: none;
+    }
+    .lecture-info {
+      flex: 1;
+      font-size: 1rem;
+      color: #333;
+    }
+    .lecture-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .lecture-summary {
+      margin-top: 20px;
+    }
+    .lecture-summary ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>온라인 강의 체험</h1>
+
+  <div class="tab-buttons">
+    <button onclick="location.href='lecture-type.html'">유형별 강의</button>
+	<button class="active" onclick="location.href='lecture-department.html'">학과별 강의</button>
+
+  </div>
+
+  <div class="department-buttons" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; margin-bottom: 30px;">
+  <button class="active" onclick="showLecture('https://kr.object.ncloudstorage.com/lect-media/2025/10/CE2042/1530007/CE204201/1/CE204201_1_1.mp4', '뉴미디어디자인학과', '실영영어', '박상도 교수')">뉴미디어디자인학과</button>
+  <button onclick="showLecture()">방송문예창작학과</button>  
+  <button onclick="showLecture()">음악학과</button>
+  <button onclick="showLecture()">중국언어문화학과</button>
+  <button onclick="showLecture()">한국어교육학과</button>
+  <button onclick="showLecture()">국어국문학과</button>
+  <button onclick="showLecture()">사회복지학과</button>
+  <button onclick="showLecture()">심리학과</button>
+  <button onclick="showLecture()">경영학과</button>
+  <button onclick="showLecture()">법학과</button>
+  <button onclick="showLecture()">기독교상담복지학과</button>
+  <button onclick="showLecture()">사회복지학과</button>
+  <button onclick="showLecture()">상담심리학과</button>
+  <button onclick="showLecture()">아동심리치료학과</button>
+  <button onclick="showLecture()">요양복지학과</button>
+  <button onclick="showLecture()">청소년코칭상담학과</button>
+  <button onclick="showLecture()">크리스천리더십학과</button>
+  <button onclick="showLecture()">평생교육상담학과</button>
+  <button onclick="showLecture()">경영학과</button>
+  <button onclick="showLecture()">금융재테크학과</button>
+  <button onclick="showLecture()">법·행정학과</button>
+  <button onclick="showLecture()">부동산학과</button>
+  <button onclick="showLecture()">뷰티미용예술학과</button>
+  <button onclick="showLecture()">세무회계학과</button>
+  <button onclick="showLecture()">스포츠재활복지학과</button>
+  <button onclick="showLecture()">엔터테인먼트학과</button>
+  <button onclick="showLecture()">유통서비스학과</button>
+  <button onclick="showLecture()">건설스마트안전공학과</button>
+  <button onclick="showLecture()">건설시스템공학과</button>
+  <button onclick="showLecture()">산업안전공학과</button>
+  <button onclick="showLecture()">소방방재학과</button>
+  <button onclick="showLecture()">전기공학과</button>
+  <button onclick="showLecture()">컴퓨터공학과</button>
+  <button onclick="showLecture()">환경안전공학과</button>
+</div>
+
+<div style="margin-top: 40px; background: #f5f5f5; padding: 40px 0; text-align: center;">
+  <h2 id="lectureTitle">뉴미디어디자인학과</h2>
+  <div style="max-width: 700px; margin: 0 auto;">
+   <video id="departmentVideo" width="100%" height="400" controls>
+  <source src="https://kr.object.ncloudstorage.com/lect-media/2025/10/CE2042/1530007/CE204201/1/CE204201_1_1.mp4" type="video/mp4">
+   <track src="https://kr.object.ncloudstorage.com/lect-media/2025/10/CE2042/1530007/CE204201/1/CE204201_1_1.vtt" kind="subtitles" srclang="ko" label="Korean" default>
+  브라우저가 video 태그를 지원하지 않습니다.
+</video>
+    <p id="lectureInfo" style="margin-top: 16px; font-size: 16px; color: #444;">콘텐츠제작 입문 | 김미정 교수</p>
+  </div>
+</div>
+</div>
+
+<script>
+  function showLecture(url, department, course, professor) {
+    document.getElementById('departmentVideo').src = url;
+    document.getElementById('lectureTitle').innerText = department;
+    document.getElementById('lectureInfo').innerText = course + ' | ' + professor;
+  }
+  window.onload = function() {
+    showLecture('https://www.youtube.com/embed/5_yEKCkLODA', '뉴미디어디자인학과', '실영영어', '박상도 교수');
+  };
+  function showLecture(url, department, course, professor) {
+  const video = document.getElementById('departmentVideo');
+  const source = video.querySelector('source');
+  source.src = url;
+  video.load(); // 동영상 재로드
+  document.getElementById('lectureTitle').innerText = department;
+  document.getElementById('lectureInfo').innerText = course + ' | ' + professor;
+};
+</script>
+</body>
+</html>
