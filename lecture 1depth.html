@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>학부별 온라인 강의 체험</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      text-align: left;
+      color: #222;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+    .tab-buttons button {
+      flex: 1;
+      padding: 15px;
+      background-color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-right: 1px solid #ccc;
+    }
+    .tab-buttons button:last-child {
+      border-right: none;
+    }
+    .tab-buttons button.active {
+      background-color: #00a5df;
+      color: white;
+      font-weight: bold;
+    }
+    .video-section {
+      display: none;
+      margin-top: 40px;
+    }
+    .video-section.active {
+      display: block;
+    }
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .video-card {
+      width: calc(50% - 20px);
+      padding: 20px 0;
+      box-sizing: border-box;
+    }
+    .video-card iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    .video-info {
+      text-align: left;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.4;
+    }
+    .video-info .major {
+      font-weight: bold;
+    }
+    .video-info .subject {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>온라인 강의 체험</h1>
+
+  <div class="tab-buttons">
+    <button onclick="showVideo('인문예술', event)">인문예술학부</button>
+    <button onclick="showVideo('휴먼서비스', event)">휴먼서비스학부</button>
+    <button onclick="showVideo('융합자산관리', event)">융합자산관리학부</button>
+    <button onclick="showVideo('ICT', event)">ICT·도시인프라공학부</button>
+  </div>
+
+  <div id="videoContainer" class="video-section">
+    <div id="videoGrid" class="video-grid"></div>
+  </div>
+</div>
+
+<script>
+  function showVideo(dept, evt) {
+    const videoData = {
+      "인문예술": [
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "콘텐츠제작입문", major: "방송문예창작학과", professor: "김미정 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "영상제작실습", major: "뉴미디어디자인학과", professor: "이수정 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "영어스피치", major: "실용영어학과", professor: "최연지 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "중국문학산책", major: "중국언어문화학과", professor: "왕샤오 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "한국어교육개론", major: "한국어교육학과", professor: "김지현 교수" }
+      ],
+      "휴먼서비스": [
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "사회복지개론", major: "사회복지학과", professor: "이은정 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "아동심리이해", major: "아동심리치료학과", professor: "한지훈 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "기독교상담", major: "기독교상담복지학과", professor: "이재훈 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "청소년코칭상담", major: "청소년코칭상담학과", professor: "박나래 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "크리스천리더십", major: "크리스천리더십학과", professor: "정성훈 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "평생교육론", major: "평생교육상담학과", professor: "이지연 교수" }
+      ],
+      "융합자산관리": [
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "부동산시장론", major: "부동산학과", professor: "최성훈 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "엔터비즈니스이해", major: "엔터테인먼트학과", professor: "김수연 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "재무관리", major: "금융재테크학과", professor: "박정우 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "법학개론", major: "법·행정학과", professor: "오민석 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "뷰티산업이해", major: "뷰티미용예술학과", professor: "윤서영 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "세무회계실무", major: "세무회계학과", professor: "정다운 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "스포츠재활이론", major: "스포츠재활복지학과", professor: "최지훈 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "유통경영론", major: "유통서비스학과", professor: "김태진 교수" }
+      ],
+      "ICT": [
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "정보보호총론", major: "해킹보안학과", professor: "손규식 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "암호기초기술", major: "해킹보안학과", professor: "손규식 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "컴퓨터개론", major: "컴퓨터공학과", professor: "장유진 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "전기전자기초", major: "전기공학과", professor: "김성우 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "소방안전관리", major: "소방방재학과", professor: "박재호 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "건설안전공학", major: "건설스마트안전공학과", professor: "이대영 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "산업안전개론", major: "산업안전공학과", professor: "윤상민 교수" },
+        { src: "https://www.youtube.com/embed/y6QrI0Ur4qI", subject: "환경안전관리", major: "환경안전공학과", professor: "박지영 교수" }
+      ]
+    };
+
+    const container = document.getElementById("videoGrid");
+    container.innerHTML = "";
+    videoData[dept].forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "video-card";
+      card.innerHTML = `
+        <iframe src="${item.src}?autoplay=1" allowfullscreen></iframe>
+        <div class="video-info">
+          <div class="major">${item.major}</div>
+          <div class="subject">${item.subject} | ${item.professor}</div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    document.getElementById("videoContainer").classList.add("active");
+    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+    evt.target.classList.add('active');
+  }
+</script>
+</body>
+</html>

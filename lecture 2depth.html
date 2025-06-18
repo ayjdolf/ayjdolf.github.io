@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>학부별 온라인 강의 체험</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      text-align: left;
+      color: #222;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+    .tab-buttons button {
+      flex: 1;
+      padding: 15px;
+      background-color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-right: 1px solid #ccc;
+    }
+    .tab-buttons button:last-child {
+      border-right: none;
+    }
+    .tab-buttons button.active {
+      background-color: #00a5df;
+      color: white;
+      font-weight: bold;
+    }
+
+    .sub-buttons {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 30px;
+      gap: 0;
+    }
+    .sub-buttons.active {
+      display: flex;
+    }
+    .sub-buttons button {
+      width: calc(100% / 6);
+      min-width: 160px;
+      height: 48px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      background-color: #f5f5f5;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .sub-buttons button:hover {
+      background-color: #e1f5fe;
+      border-color: #00a5df;
+    }
+
+    @media (max-width: 1024px) {
+      .sub-buttons button {
+        width: calc(100% / 3);
+      }
+    }
+    @media (max-width: 640px) {
+      .sub-buttons button {
+        width: calc(100% / 2);
+      }
+    }
+
+    .video-section {
+      display: none;
+      margin-top: 40px;
+      background-color: #f0f0f0;
+      padding: 30px 0;
+      text-align: center;
+    }
+    .video-section.active {
+      display: block;
+    }
+    iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>온라인 강의 체험</h1>
+
+  <div class="tab-buttons">
+    <button onclick="selectSchool('인문예술')">인문예술학부</button>
+    <button onclick="selectSchool('휴먼서비스')">휴먼서비스학부</button>
+    <button onclick="selectSchool('융합자산관리')">융합자산관리학부</button>
+    <button onclick="selectSchool('ICT')">ICT·도시인프라공학부</button>
+  </div>
+
+  <div id="인문예술" class="sub-buttons">
+    <button onclick="showVideo()">뉴미디어디자인학과</button>
+    <button onclick="showVideo()">방송문예창작학과</button>
+    <button onclick="showVideo()">실용영어학과</button>
+    <button onclick="showVideo()">음악학과</button>
+    <button onclick="showVideo()">중국언어문화학과</button>
+    <button onclick="showVideo()">한국어교육학과</button>
+  </div>
+  <div id="휴먼서비스" class="sub-buttons">
+    <button onclick="showVideo()">기독교상담복지학과</button>
+    <button onclick="showVideo()">사회복지학과</button>
+    <button onclick="showVideo()">상담심리학과</button>
+    <button onclick="showVideo()">아동심리치료학과</button>
+    <button onclick="showVideo()">요양복지학과</button>
+    <button onclick="showVideo()">청소년코칭상담학과</button>
+    <button onclick="showVideo()">크리스천리더십학과</button>
+    <button onclick="showVideo()">평생교육상담학과</button>
+  </div>
+  <div id="융합자산관리" class="sub-buttons">
+    <button onclick="showVideo()">경영학과</button>
+    <button onclick="showVideo()">금융재테크학과</button>
+    <button onclick="showVideo()">법·행정학과</button>
+    <button onclick="showVideo()">부동산학과</button>
+    <button onclick="showVideo()">뷰티미용예술학과</button>
+    <button onclick="showVideo()">세무회계학과</button>
+    <button onclick="showVideo()">스포츠재활복지학과</button>
+    <button onclick="showVideo()">엔터테인먼트학과</button>
+    <button onclick="showVideo()">유통서비스학과</button>
+  </div>
+  <div id="ICT" class="sub-buttons">
+    <button onclick="showVideo()">건설스마트안전공학과</button>
+    <button onclick="showVideo()">건설시스템공학과</button>
+    <button onclick="showVideo()">산업안전공학과</button>
+    <button onclick="showVideo()">소방방재학과</button>
+    <button onclick="showVideo()">전기공학과</button>
+    <button onclick="showVideo()">컴퓨터공학과</button>
+    <button onclick="showVideo()">환경안전공학과</button>
+  </div>
+
+  <div id="videoContainer" class="video-section">
+    <h2>학과별 강의 예시</h2>
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+  function selectSchool(schoolId) {
+    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.sub-buttons').forEach(sb => sb.classList.remove('active'));
+    document.getElementById(schoolId).classList.add('active');
+    document.getElementById('videoContainer').classList.remove('active');
+    document.getElementById('videoFrame').src = '';
+  }
+
+  function showVideo() {
+    const videoSrc = "https://www.youtube.com/embed/y6QrI0Ur4qI";
+    document.getElementById("videoFrame").src = videoSrc + "?autoplay=1";
+    document.getElementById("videoContainer").classList.add("active");
+  }
+</script>
+</body>
+</html>
